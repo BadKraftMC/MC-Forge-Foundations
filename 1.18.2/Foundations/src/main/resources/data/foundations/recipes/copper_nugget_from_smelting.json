@@ -1,10 +1,9 @@
 {
   "type": "minecraft:smelting",
-  "group": "copper_ingot",
   "ingredient": {
-    "item": "minecraft:copper_nugget_ore"
+    "item": "foundations:copper_nugget_ore"
   },
-  "result": "minecraft:copper_nugget",
+  "result": "foundations:copper_nugget",
   "experience": 0.25,
   "cookingtime": 150
 }

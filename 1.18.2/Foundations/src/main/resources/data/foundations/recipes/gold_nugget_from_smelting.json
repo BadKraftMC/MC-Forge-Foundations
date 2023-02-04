@@ -1,8 +1,7 @@
 {
   "type": "minecraft:smelting",
-  "group": "gold_ingot",
   "ingredient": {
-    "item": "minecraft:gold_nugget_ore"
+    "item": "foundations:gold_nugget_ore"
   },
   "result": "minecraft:gold_nugget",
   "experience": 0.25,

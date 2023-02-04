@@ -1,10 +1,9 @@
 {
   "type": "minecraft:smelting",
-  "group": "iron_ingot",
   "ingredient": {
-    "item": "minecraft:clay_ore"
+    "item": "foundations:clay_ore"
   },
-  "result": "minecraft:iron_nugget_ore",
+  "result": "foundations:iron_nugget_ore",
   "experience": 0.55,
   "cookingtime": 275
 }

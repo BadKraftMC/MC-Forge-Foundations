@@ -1,8 +1,7 @@
 {
   "type": "minecraft:smelting",
-  "group": "iron_ingot",
   "ingredient": {
-    "item": "minecraft:iron_nugget_ore"
+    "item": "foundations:iron_nugget_ore"
   },
   "result": "minecraft:iron_nugget",
   "experience": 0.25,
