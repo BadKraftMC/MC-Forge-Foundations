@@ -4,6 +4,7 @@
 	"itemGroup.foundations": "Foundations",
 
 	"item.foundations.clay_ore": "Clay Ore",
+	"item.foundations.clay_brick": "Clay Brick",
 	"item.foundations.copper_nugget": "Copper Nugget",
 	"item.foundations.copper_nugget_ore": "Copper Nugget Ore",
 	"item.foundations.iron_nugget_ore": "Iron Nugget Ore",
@@ -13,5 +14,6 @@
 	"item.foundations.flint_shovel": "Flint Shovel",
 	"item.foundations.flint_hoe": "Flint Hoe",
 
-	"block.foundations.clay_block": "Clay"
+	"block.foundations.clay_block": "Clay",
+	"block.foundations.clay_oven": "Clay Oven"
 }
