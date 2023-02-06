@@ -151,9 +151,9 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
       "minecraft:underwater_magma",
+      "foundations:disk_clay",
       "minecraft:disk_sand",
-      "minecraft:disk_gravel",
-      "foundations:disk_clay"
+      "minecraft:disk_gravel"
     ],
     [],
     [

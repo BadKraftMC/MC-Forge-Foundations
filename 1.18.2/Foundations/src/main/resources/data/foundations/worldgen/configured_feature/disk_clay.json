@@ -2,7 +2,7 @@
   "type": "minecraft:disk",
   "config": {
     "state": {
-      "Name": "foundations:disk_clay"
+      "Name": "minecraft:clay"
     },
     "radius": {
       "type": "minecraft:uniform",
@@ -14,13 +14,13 @@
     "half_height": 1,
     "targets": [
       {
-        "Name": "foundations:clay"
-      },
-      {
-        "Name": "minecraft:clay"
+        "Name": "foundations:clay_block"
       },
       {
         "Name": "minecraft:gravel"
+      },
+      {
+        "Name": "minecraft:clay"
       }
     ]
   }
