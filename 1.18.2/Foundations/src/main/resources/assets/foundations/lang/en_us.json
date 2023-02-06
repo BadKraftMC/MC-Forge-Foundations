@@ -14,5 +14,6 @@
 	"item.foundations.flint_shovel": "Flint Shovel",
 	"item.foundations.flint_hoe": "Flint Hoe",
 
-	"block.foundations.clay_block": "Clay"
+	"block.foundations.clay_block": "Clay",
+	"block.foundations.clay_oven": "Clay Oven"
 }
