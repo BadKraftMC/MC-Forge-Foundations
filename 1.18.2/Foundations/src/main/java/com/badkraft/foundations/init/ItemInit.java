@@ -52,6 +52,8 @@ public class ItemInit {
 	//	items
 	public static final RegistryObject<Item> CLAY_ORE = register("clay_ore", 
 			GetItem(CreativeModeTab.TAB_MATERIALS));
+	public static final RegistryObject<Item> CLAY_BRICK = register("clay_brick",
+			GetItem(CreativeModeTab.TAB_MATERIALS));
 	public static final RegistryObject<Item> COPPER_NUGGET_ORE = register("copper_nugget_ore",
 			GetItem(CreativeModeTab.TAB_MATERIALS));
 	public static final RegistryObject<Item> COPPER_NUGGET = register("copper_nugget",
