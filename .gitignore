@@ -28,4 +28,4 @@ replay_pid*
 
 # ignore data directory
 /data
-tools/Blockbench_4.6.4.exe
+tools/Blockbench
