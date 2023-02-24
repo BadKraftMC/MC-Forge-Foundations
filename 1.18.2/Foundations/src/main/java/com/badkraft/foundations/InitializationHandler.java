@@ -1,9 +1,13 @@
 package com.badkraft.foundations;
 
+import com.badkraft.foundations.init.BlockInit;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.slf4j.Logger;
 
@@ -16,6 +20,14 @@ public final class InitializationHandler {
 	@SubscribeEvent
 	public static void onInitializedEvent(FMLCommonSetupEvent event) {
 		LOGGER.debug("*** *** MC FOUNDATIONS INITIALIZED *** ***");
+
 		FOUNDATIONS.onFoundationsInitialized();
+	}
+
+	@SubscribeEvent
+	public static void onClientSetup(FMLClientSetupEvent event){
+		LOGGER.debug("*** *** MC FOUNDATIONS CLIENT SETUP *** ***");
+
+		ItemBlockRenderTypes.setRenderLayer(BlockInit.CLAY_OVEN.get(), RenderType.translucent());
 	}
 }

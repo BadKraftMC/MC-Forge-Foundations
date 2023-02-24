@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "###",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "foundations:clay_brick"
+    },
+    "X": {
+      "item": "minecraft:campfire"
+    }
+  },
+  "result": {
+    "item": "foundations:clay_oven"
+  }
+}
