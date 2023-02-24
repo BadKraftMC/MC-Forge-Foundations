@@ -1,24 +1,24 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "clay_oven_bottom",
-		"2": "clay_oven",
-		"3": "clay_oven_top",
-		"4": "clay_oven_side",
-		"particle": "clay_oven"
+		"bottom": "foundations:block/clay_oven_bottom",
+		"top": "foundations:block/clay_oven_top",
+		"particle": "foundations:block/clay_oven",
+		"front": "foundations:block/clay_oven",
+		"side": "foundations:block/clay_oven_side"
 	},
 	"elements": [
 		{
 			"from": [0, 0, 0],
-			"to": [16, 9, 16],
+			"to": [16, 13, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 5, 0]},
 			"faces": {
-				"north": {"uv": [0, 7, 16, 16], "texture": "#2"},
-				"east": {"uv": [0, 7, 16, 16], "texture": "#4"},
-				"south": {"uv": [0, 7, 16, 16], "texture": "#4"},
-				"west": {"uv": [0, 7, 16, 16], "texture": "#4"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+				"north": {"uv": [0, 3, 16, 16], "texture": "#front"},
+				"east": {"uv": [0, 3, 16, 16], "texture": "#side"},
+				"south": {"uv": [0, 3, 16, 16], "texture": "#side"},
+				"west": {"uv": [0, 3, 16, 16], "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}
 			}
 		}
 	],

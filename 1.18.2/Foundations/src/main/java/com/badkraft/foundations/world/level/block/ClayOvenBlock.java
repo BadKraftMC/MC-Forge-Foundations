@@ -18,10 +18,13 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import static com.badkraft.foundations.init.BlockInit.litBlockEmission;
+import java.util.function.ToIntFunction;
+
 
 public class ClayOvenBlock  extends Block {
-    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
+    private static final int GLOW_VALUE = 8;
+
+    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -31,10 +34,18 @@ public class ClayOvenBlock  extends Block {
                 .of(Material.STONE)
                 .strength(3.5F)
                 .requiresCorrectToolForDrops()
-                .lightLevel(litBlockEmission(10))
+                .lightLevel(litOvenEmission(15))
                 .noOcclusion());
 
-        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.TRUE));
+        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.FALSE));
+    }
+
+    /* BLOCKSTATE */
+    //	Gets a light emission level for oven block state. If no added fuel, light emits from embers glow.
+    private static ToIntFunction<BlockState> litOvenEmission(int value) {
+        return (blockState) -> {
+            return blockState.getValue(BlockStateProperties.LIT) ? value : GLOW_VALUE;
+        };
     }
 
     /* FACING */

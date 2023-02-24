@@ -51,7 +51,7 @@ public class BlockInit {
 		// TODO Auto-generated method stub
 		return () -> new BlockItem(block.get(), new Item.Properties().tab(tab));
 	}
-	//	gets a
+	//	gets a light emission level for block state provider
 	public static ToIntFunction<BlockState> litBlockEmission(int value) {
 		return (blockState) -> {
 			return blockState.getValue(BlockStateProperties.LIT) ? value : 0;
