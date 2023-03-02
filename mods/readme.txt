@@ -1,0 +1,1 @@
+including the foundations mod as well as other mods that we will "authorize" as compatible
