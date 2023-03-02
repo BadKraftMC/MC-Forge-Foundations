@@ -6,6 +6,8 @@ import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
 
 public class ItemReflector {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -37,7 +39,14 @@ public class ItemReflector {
     }
 
     private Field getField(String fieldName) throws NoSuchFieldException {
-        Field field = CLASS.getDeclaredField(fieldName);
+        List<Field> fields = Arrays.stream(CLASS.getDeclaredFields()).toList();
+
+        fields.forEach((f) -> {
+            LOGGER.debug("Item::" + f.getName());
+        });
+
+        Field field = fields.get(8); //CLASS.getDeclaredField(fieldName);
+        LOGGER.debug("selected field '" + field.getName() + "'");
         field.setAccessible(true);
 
         return field;
