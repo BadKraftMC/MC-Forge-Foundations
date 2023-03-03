@@ -4,10 +4,12 @@ package com.badkraft.foundations.world.level.block;
 import com.badkraft.foundations.world.level.block.entity.ModBlockEntities;
 import com.badkraft.foundations.world.level.block.entity.OvenBlockEntity;
 import com.badkraft.foundations.world.level.block.state.properties.ModBlockStateProperties;
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -33,8 +35,10 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
 
 import java.util.Optional;
 import java.util.Random;
@@ -42,6 +46,7 @@ import java.util.function.ToIntFunction;
 
 
 public class ClayOvenBlock  extends BaseEntityBlock {
+    private static final Logger LOGGER = LogUtils.getLogger();
     private static final int GLOW_VALUE = 8;
 
     private final boolean spawnParticles;
@@ -169,19 +174,23 @@ public class ClayOvenBlock  extends BaseEntityBlock {
         boolean isClientSide = level.isClientSide();
 
         if (!isClientSide && level.getBlockEntity(blockPos) instanceof OvenBlockEntity ovenEntity) {
-            TextComponent playerMessage;
+            String playerMessage;
 
             if(hitTopFace(hitResult)) {
-                //  attempt cooking
+                //  cooking
                 //  get the item in player's interacting hand
                 ItemStack cookItemStack = player.getItemInHand(hand);
                 Optional< CampfireCookingRecipe> recipe = ovenEntity.getCookableRecipe(cookItemStack);
 
                 if(recipe.isPresent()) {
+                    chatDebug(player, "Cook state (" + state.getValue(COOK) + ")");
                     //  cook
                     if(ovenEntity.placeFood(player.getAbilities().instabuild ? cookItemStack.copy() : cookItemStack, recipe.get().getCookingTime())) {
                         // TODO: award custom stats (player.awardStat(ModStats.INTERACT_WITH_CLAY_OVEN);)
-                        state.setValue(COOK, true);
+                        if(!state.getValue(COOK)) {
+                            state.setValue(COOK, true);
+                            chatDebug(player, "Cook state (" + state.getValue(COOK) + ")");
+                        }
 
                         return InteractionResult.SUCCESS;
                     }
@@ -190,27 +199,19 @@ public class ClayOvenBlock  extends BaseEntityBlock {
                 }
                 else {
                     if(!ovenEntity.hasCookingSlots()) {
-                        playerMessage = new TextComponent("Oven top is full");
+                        playerMessage = "Oven top is full";
                     }
                     else {
-                        playerMessage = new TextComponent(cookItemStack.getDisplayName().getString() + " is not a cookable item");
+                        playerMessage = cookItemStack.getDisplayName().getString() + " is not a cookable item";
                     }
                 }
             }
             else {
                 //  attempt smelting
-                playerMessage = new TextComponent("Smelt in the oven");
+                playerMessage = "Smelt in the oven";
+                NetworkHooks.openGui(((ServerPlayer)player), ovenEntity, blockPos);
             }
-
-//            if(entity instanceof OvenBlockEntity) {
-//                NetworkHooks.openGui(((ServerPlayer)player), (OvenBlockEntity)entity, blockPos);
-//            } else {
-//                throw new IllegalStateException("Our Container provider is missing!");
-//            }
-
-            if(playerMessage != null) {
-                player.sendMessage(playerMessage, player.getUUID());
-            }
+            chatDebug(player, playerMessage);
         }
 
         return InteractionResult.sidedSuccess(isClientSide);
@@ -229,5 +230,10 @@ public class ClayOvenBlock  extends BaseEntityBlock {
         } else {
             return createTickerHelper(entityType, ModBlockEntities.OVEN_BLOCK_ENTITY.get(), OvenBlockEntity::cookTick);
         }
+    }
+
+    private void chatDebug(Player player, String message) {
+        TextComponent text = new TextComponent("[debug]: " + message);
+        player.sendMessage(text, player.getUUID());
     }
 }
