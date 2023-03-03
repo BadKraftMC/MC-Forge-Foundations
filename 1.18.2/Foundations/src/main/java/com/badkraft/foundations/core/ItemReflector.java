@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ItemReflector {
     private static final Logger LOGGER = LogUtils.getLogger();
-    private static final String CATEGORY = "category";
+    private static final int CATEGORY = 8;  // "category";
     private static final Class<Item> CLASS = Item.class;
 
     private final Field category;
@@ -38,14 +38,16 @@ public class ItemReflector {
         }
     }
 
-    private Field getField(String fieldName) throws NoSuchFieldException {
+    @SuppressWarnings("SameParameterValue")
+    private Field getField(int fieldIndex) throws NoSuchFieldException {
         List<Field> fields = Arrays.stream(CLASS.getDeclaredFields()).toList();
 
+        //  just so we know what the fields are - cross-index from running inside IDE
         fields.forEach((f) -> {
             LOGGER.debug("Item::" + f.getName());
         });
 
-        Field field = fields.get(8); //CLASS.getDeclaredField(fieldName);
+        Field field = fields.get(fieldIndex); //CLASS.getDeclaredField(fieldName);
         LOGGER.debug("selected field '" + field.getName() + "'");
         field.setAccessible(true);
 
