@@ -30,7 +30,7 @@ import java.util.Optional;
 import java.util.Random;
 
 
-public class OvenBlockEntity extends AbstractFurnaceBlockEntity implements MenuProvider {
+public class OvenBlockEntity extends AbstractOvenBlockEntity implements MenuProvider {
     private static final int MAX_COOKING_SLOTS = 4;
 
     private final int[] cookingProgress = new int[MAX_COOKING_SLOTS];
@@ -105,7 +105,7 @@ public class OvenBlockEntity extends AbstractFurnaceBlockEntity implements MenuP
         return  MAX_COOKING_SLOTS - cookingCount > 0;
     }
 
-    public static void particleTick(Level level, BlockPos blockPos, BlockState state, OvenBlockEntity blockEntity) {
+    public static void particleTick(Level level, BlockPos blockPos, BlockState state, OvenBlockEntity oven) {
         Random random = level.random;
         if (random.nextFloat() < 0.11F) {
             for(int i = 0; i < random.nextInt(2) + 2; ++i) {
@@ -115,8 +115,8 @@ public class OvenBlockEntity extends AbstractFurnaceBlockEntity implements MenuP
 
         int l = state.getValue(CampfireBlock.FACING).get2DDataValue();
 
-        for(int j = 0; j < blockEntity.cookItems.size(); ++j) {
-            if (!blockEntity.cookItems.get(j).isEmpty() && random.nextFloat() < 0.2F) {
+        for(int j = 0; j < oven.cookItems.size(); ++j) {
+            if (!oven.cookItems.get(j).isEmpty() && random.nextFloat() < 0.2F) {
                 Direction direction = Direction.from2DDataValue(Math.floorMod(j + l, 4));
                 float f = 0.3125F;
                 double d0 = (double)blockPos.getX() + 0.5D - (double)((float)direction.getStepX() * 0.3125F) + (double)((float)direction.getClockWise().getStepX() * 0.3125F);
@@ -129,17 +129,17 @@ public class OvenBlockEntity extends AbstractFurnaceBlockEntity implements MenuP
             }
         }
     }
-    public static void cookTick(Level level, BlockPos blockPos, BlockState state, OvenBlockEntity blockEntity) {
+    public static void cookTick(Level level, BlockPos blockPos, BlockState state, OvenBlockEntity oven) {
         boolean hasFoodItem = false;
 
-        for(int i = 0; i < blockEntity.cookItems.size(); ++i) {
-            ItemStack cookItemStack = blockEntity.cookItems.get(i);
+        for(int i = 0; i < oven.cookItems.size(); ++i) {
+            ItemStack cookItemStack = oven.cookItems.get(i);
 
             if (!cookItemStack.isEmpty()) {
                 hasFoodItem = true;
-                ++blockEntity.cookingProgress[i];
+                ++oven.cookingProgress[i];
 
-                if (blockEntity.cookingProgress[i] >= blockEntity.cookingTime[i]) {
+                if (oven.cookingProgress[i] >= oven.cookingTime[i]) {
                     Container container = new SimpleContainer(cookItemStack);
                     ItemStack recipeItemStack = level.getRecipeManager()
                             .getRecipeFor(RecipeType.CAMPFIRE_COOKING, container, level)
@@ -148,20 +148,18 @@ public class OvenBlockEntity extends AbstractFurnaceBlockEntity implements MenuP
                     //  cooking completed - drop item
                     Containers.dropItemStack(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), recipeItemStack);
                     //  decrement cooking count
-                    --blockEntity.cookingCount;
+                    --oven.cookingCount;
 
                     //  no longer cooking? set cook property to false...
-                    if(blockEntity.cookingCount == 0) {
-                        state.setValue(ClayOvenBlock.COOK, false);
+                    if(oven.cookingCount == 0) {
+                        state.setValue(ClayOvenBlock.COOKING, false);
                     }
 
-                    blockEntity.cookItems.set(i, ItemStack.EMPTY);
+                    oven.cookItems.set(i, ItemStack.EMPTY);
                     level.sendBlockUpdated(blockPos, state, state, 3);
                 }
             }
         }
-
-        AbstractFurnaceBlockEntity.serverTick(level, blockPos, state, blockEntity);
 
         if (hasFoodItem) {
             setChanged(level, blockPos, state);

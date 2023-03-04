@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"foundations:clay_oven"
+		"foundations:clay_oven",
+		"foundations:polished_diorite_brick"
 	]
 }

@@ -56,8 +56,8 @@ public class ClayOvenBlock  extends BaseEntityBlock {
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty SMELT = BlockStateProperties.LIT;
-    public static final BooleanProperty COOK = ModBlockStateProperties.SMOLDER;
+    public static final BooleanProperty SMELTING = BlockStateProperties.LIT;
+    public static final BooleanProperty COOKING = ModBlockStateProperties.SMOLDER;
     public static final BooleanProperty SIGNAL_FIRE = BlockStateProperties.SIGNAL_FIRE;
 
     /* CONSTRUCTOR */
@@ -71,19 +71,21 @@ public class ClayOvenBlock  extends BaseEntityBlock {
 
         registerDefaultState(stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(SMELT, Boolean.FALSE)
-                .setValue(COOK, Boolean.FALSE));
+                .setValue(SMELTING, Boolean.FALSE)
+                .setValue(COOKING, Boolean.FALSE));
 
         spawnParticles = true;
     }
 
     /* BLOCK STATE */
+    @Override
     public void animateTick(BlockState state, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull Random random) {
-        if (state.getValue(COOK)) {
-            double oX = (double)blockPos.getX() + 0.5D;
-            double oY = blockPos.getY();
-            double oZ = (double)blockPos.getZ() + 0.5D;
+        double oX = (double)blockPos.getX() + 0.5D;
+        double oY = blockPos.getY();
+        double oZ = (double)blockPos.getZ() + 0.5D;
 
+        if (state.getValue(COOKING)) {
+            LOGGER.debug("[animateTick] :: Cooking");
             if (random.nextInt(10) == 0) {
                 level.playLocalSound(oX, oY + 0.5D, oZ, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5F + random.nextFloat(), random.nextFloat() * 0.7F + 0.6F, false);
             }
@@ -94,10 +96,27 @@ public class ClayOvenBlock  extends BaseEntityBlock {
                 }
             }
         }
+
+        if (state.getValue(SMELTING)) {
+            double offset;
+
+            LOGGER.debug("[animateTick] :: Smelting");
+            if (random.nextDouble() < 0.1D) {
+                level.playLocalSound(oX, oY, oZ, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            }
+            Direction direction = state.getValue(FACING);
+            Direction.Axis axis = direction.getAxis();
+
+            offset = random.nextDouble() * 0.6D - 0.3D;
+            double xOffset = axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52D : offset;
+            offset = random.nextDouble() * 6.0D / 16.0D;
+            double zOffset = axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52D : offset;
+            level.addParticle(ParticleTypes.FLAME, oX + xOffset, oY + offset, oZ + zOffset, 0.0D, 0.0D, 0.0D);
+        }
     }
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SMELT, SIGNAL_FIRE, COOK);
+        builder.add(FACING, SIGNAL_FIRE, COOKING, SMELTING);
     }
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -110,7 +129,7 @@ public class ClayOvenBlock  extends BaseEntityBlock {
     }
     //	Gets a light emission level for oven block state. If no added fuel, light emits from embers glow.
     private static ToIntFunction<BlockState> litOvenEmission(int value) {
-        return (blockState) -> blockState.getValue(SMELT) ? value : GLOW_VALUE;
+        return (blockState) -> blockState.getValue(SMELTING) ? value : GLOW_VALUE;
     }
 
     /* BEHAVIORS */
@@ -183,13 +202,13 @@ public class ClayOvenBlock  extends BaseEntityBlock {
                 Optional< CampfireCookingRecipe> recipe = ovenEntity.getCookableRecipe(cookItemStack);
 
                 if(recipe.isPresent()) {
-                    chatDebug(player, "Cook state (" + state.getValue(COOK) + ")");
+                    chatDebug(player, "Cook state (" + state.getValue(COOKING) + ")");
                     //  cook
                     if(ovenEntity.placeFood(player.getAbilities().instabuild ? cookItemStack.copy() : cookItemStack, recipe.get().getCookingTime())) {
                         // TODO: award custom stats (player.awardStat(ModStats.INTERACT_WITH_CLAY_OVEN);)
-                        if(!state.getValue(COOK)) {
-                            state.setValue(COOK, true);
-                            chatDebug(player, "Cook state (" + state.getValue(COOK) + ")");
+                        if(!state.getValue(COOKING)) {
+                            state.setValue(COOKING, true);
+                            chatDebug(player, "Cook state (" + state.getValue(COOKING) + ")");
                         }
 
                         return InteractionResult.SUCCESS;
@@ -228,7 +247,11 @@ public class ClayOvenBlock  extends BaseEntityBlock {
         if(level.isClientSide) {
             return createTickerHelper(entityType, ModBlockEntities.OVEN_BLOCK_ENTITY.get(), OvenBlockEntity::particleTick);
         } else {
-            return createTickerHelper(entityType, ModBlockEntities.OVEN_BLOCK_ENTITY.get(), OvenBlockEntity::cookTick);
+            return createTickerHelper(entityType, ModBlockEntities.OVEN_BLOCK_ENTITY.get(),
+                    (l, pos, s, entity) -> {
+                        OvenBlockEntity.cookTick(l, pos, s, entity);
+                        OvenBlockEntity.smeltTick(l, pos, s, entity);
+                    });
         }
     }
 

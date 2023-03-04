@@ -8,12 +8,10 @@ import net.minecraft.world.level.material.MaterialColor;
 
 
 public class ClayBlock extends Block {
-
     public ClayBlock() {
         super(BlockBehaviour.Properties
                 .of(Material.CLAY, MaterialColor.COLOR_GRAY)
                 .strength(0.5f)
                 .sound(SoundType.GRAVEL));
     }
-
 }

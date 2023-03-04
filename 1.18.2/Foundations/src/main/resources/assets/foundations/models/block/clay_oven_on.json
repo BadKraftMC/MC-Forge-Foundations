@@ -1,8 +1,38 @@
 {
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "foundations:block/clay_oven_top",
-    "front": "foundations:block/clay_oven_front",
-    "side": "foundations:block/clay_oven_side"
-  }
+	"parent": "minecraft:block/orientable",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"bottom": "foundations:block/clay_oven_bottom",
+		"top": "foundations:block/clay_oven_top",
+		"particle": "foundations:block/clay_oven",
+		"front": "foundations:block/clay_oven",
+		"side": "foundations:block/clay_oven_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 13, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 5, 0]},
+			"faces": {
+				"north": {"uv": [0, 3, 16, 16], "texture": "#front"},
+				"east": {"uv": [0, 3, 16, 16], "texture": "#side"},
+				"south": {"uv": [0, 3, 16, 16], "texture": "#side"},
+				"west": {"uv": [0, 3, 16, 16], "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-2, -180, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.35, 0.35, 0.35]
+		},
+		"firstperson_righthand": {
+			"rotation": [-16, 151, 0],
+			"translation": [1.25, 4.25, 0],
+			"scale": [0.35, 0.35, 0.35]
+		}
+	}
 }
