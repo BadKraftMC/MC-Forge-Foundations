@@ -9,12 +9,15 @@
 	"item.foundations.copper_nugget_ore": "Copper Nugget Ore",
 	"item.foundations.iron_nugget_ore": "Iron Nugget Ore",
 	"item.foundations.gold_nugget_ore": "Gold Nugget Ore",
+	"item.foundations.rough_stone_rock": "Rough Stone Rock",
 
 	"item.foundations.flint_axe": "Flint Axe",
 	"item.foundations.flint_shovel": "Flint Shovel",
 	"item.foundations.flint_hoe": "Flint Hoe",
 
 	"block.foundations.clay_block": "Clay",
-	"block.foundations.polished_diorite_brick": "Polished Diorite Brick",
-	"block.foundations.clay_oven": "Clay Oven"
+	"block.foundations.rough_stone_block": "Rough Stone",
+
+	"block.foundations.clay_oven": "Clay Oven",
+	"block.foundations.stone_mason_bench": "Stone Mason's Bench"
 }

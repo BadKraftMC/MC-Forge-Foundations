@@ -1,0 +1,51 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+    {
+        "rolls": 1.0,
+        "entries": [
+        {
+            "type": "minecraft:alternatives",
+            "children": [
+            {
+                "type": "minecraft:item",
+                "conditions": [
+                {
+                    "condition": "minecraft:match_tool",
+                    "predicate": {
+                        "enchantments": [
+                        {
+                            "enchantment": "minecraft:silk_touch",
+                            "levels": {
+                                "min": 1
+                            }
+                        }
+                    ]}
+                }],
+                "name": "minecraft:stone"
+            },
+            {
+                "type": "minecraft:item",
+                "name": "foundations:rough_stone_block",
+                "conditions": [
+                {
+                    "condition": "minecraft:random_chance",
+                    "chance": 0.25
+                }
+              ]
+            },
+            {
+                "type": "minecraft:item",
+                "name": "foundations:rough_stone_rock",
+                "functions": [
+                {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 2.0,
+                      "max": 3.0
+                    }
+                }]
+            }]
+        }]
+    }]
+}
