@@ -27,17 +27,19 @@ public class ModItems {
 
     //	items
     public static final RegistryObject<Item> CLAY_ORE = register("clay_ore",
-            getItem());
+            getItem(CreativeModeTab.TAB_MATERIALS));
     public static final RegistryObject<Item> CLAY_BRICK = register("clay_brick",
-            getItem());
+            getItem(CreativeModeTab.TAB_MATERIALS));
     public static final RegistryObject<Item> COPPER_NUGGET_ORE = register("copper_nugget_ore",
-            getItem());
+            getItem(CreativeModeTab.TAB_MATERIALS));
     public static final RegistryObject<Item> COPPER_NUGGET = register("copper_nugget",
-            getItem());
+            getItem(CreativeModeTab.TAB_MATERIALS));
     public static final RegistryObject<Item> IRON_NUGGET_ORE = register("iron_nugget_ore",
-            getItem());
+            getItem(CreativeModeTab.TAB_MATERIALS));
     public static final RegistryObject<Item> GOLD_NUGGET_ORE = register("gold_nugget_ore",
-            getItem());
+            getItem(CreativeModeTab.TAB_MATERIALS));
+    public static final RegistryObject<Item> ROUGH_STONE_ROCK = register("rough_stone_rock",
+            getItem(CreativeModeTab.TAB_MATERIALS));
 
     //	tools
     public static final RegistryObject<Item> FLINT_AXE = register("flint_axe", FlintAxeItem::new);
@@ -45,9 +47,9 @@ public class ModItems {
     public static final RegistryObject<Item> FLINT_HOE = register("flint_hoe", FlintHoeItem::new);
 
     //	gets a generic Item and puts it on the supplied tab
-    private static <T extends Item> Supplier<Item> getItem() {
+    private static <T extends Item> Supplier<Item> getItem(CreativeModeTab creativeTab) {
         // TODO Auto-generated method stub
-        return () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS));
+        return () -> new Item(new Item.Properties().tab(creativeTab));
     }
 
     //	get a handle on items we want to remove from tabs

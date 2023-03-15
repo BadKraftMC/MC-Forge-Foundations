@@ -1,0 +1,6 @@
+{
+	"parent": "%model%/%parent%",
+	"textures": {
+		"all": "%mod%:%model%/%name%"
+	}
+}

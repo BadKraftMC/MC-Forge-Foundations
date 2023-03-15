@@ -2,6 +2,7 @@
 	"replace": false,
 	"values": [
 		"foundations:clay_oven",
-		"foundations:polished_diorite_brick"
+		"foundations:rough_stone_block",
+		"foundations:stone_mason_bench"
 	]
 }

@@ -1,5 +1,6 @@
 package com.badkraft.foundations;
 
+import com.badkraft.foundations.world.inventory.ModMenuContainers;
 import com.badkraft.foundations.world.item.ModItems;
 import com.badkraft.foundations.world.level.block.ModBlocks;
 import com.badkraft.foundations.world.level.block.entity.ModBlockEntities;
@@ -12,6 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 
@@ -31,8 +33,8 @@ public class Foundations {
 		
 		ModItems.register(bus);
 		ModBlocks.register(bus);
-
 		ModBlockEntities.register(bus);
+		ModMenuContainers.register(bus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -46,7 +48,7 @@ public class Foundations {
 
 		@Override
 		@OnlyIn(Dist.CLIENT)
-		public ItemStack makeIcon() {
+		public @NotNull ItemStack makeIcon() {
 			return new ItemStack(ModItems.MEDALLION.get());
 		}	
 	}

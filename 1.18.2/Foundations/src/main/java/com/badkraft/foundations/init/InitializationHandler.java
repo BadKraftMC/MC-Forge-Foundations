@@ -31,5 +31,6 @@ public final class InitializationHandler {
 		LOGGER.debug("*** *** MC FOUNDATIONS CLIENT SETUP *** ***");
 
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.CLAY_OVEN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.STONE_MASON_BENCH.get(), RenderType.solid());
 	}
 }

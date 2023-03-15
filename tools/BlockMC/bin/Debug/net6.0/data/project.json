@@ -1,0 +1,11 @@
+{
+  "root": "..\\..\\..\\..\\..\\1.18.2\\Foundations",
+  "mod": "foundations",
+  "model": {
+    "type": "item",
+    "item_parent": "rough_stone_rock",
+    "block_parent": "cube_all"
+  },
+  "name": "rough_stone_rock",
+  "texture": "rough_stone_rock.png"
+}

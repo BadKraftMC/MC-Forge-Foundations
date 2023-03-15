@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "#X#",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "foundations:rough_stone_rock"
+    },
+    "X": {
+      "item": "foundations:rough_stone_block"
+    }
+  },
+  "result": {
+    "item": "foundations:stone_mason_bench"
+  }
+}

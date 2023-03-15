@@ -28,14 +28,19 @@ public class ModBlocks {
 
     private static final BlockBehaviour.Properties QUARTZ_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE, MaterialColor.QUARTZ)
             .requiresCorrectToolForDrops().strength(1.5F, 6.0F);
+    private static final BlockBehaviour.Properties STONE_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE)
+            .requiresCorrectToolForDrops().strength(1.5F, 6.0F);
 
     public static final RegistryObject<Block> CLAY_BLOCK = registerBlockItem("clay_block",
             ClayBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));
-    public static final RegistryObject<Block> POLISHED_DIORITE_BRICK_BLOCK = registerBlockItem("polished_diorite_brick",
-            () -> getBlock(QUARTZ_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> ROUGH_STONE_BLOCK = registerBlockItem("rough_stone_block",
+            () -> getBlock(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
 
     public static final RegistryObject<Block> CLAY_OVEN = registerBlockItem("clay_oven",
             ClayOvenBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));
+    public static final RegistryObject<Block> STONE_MASON_BENCH = registerBlockItem("stone_mason_bench",
+//            () -> getBlock(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
+            StoneMasonBenchBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));
 
     public static void register(IEventBus eventBus) { BLOCKS.register(eventBus); }
 
