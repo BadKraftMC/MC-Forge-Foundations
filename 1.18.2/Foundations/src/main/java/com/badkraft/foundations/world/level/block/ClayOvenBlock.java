@@ -193,7 +193,7 @@ public class ClayOvenBlock  extends BaseEntityBlock {
         boolean isClientSide = level.isClientSide();
 
         if (!isClientSide && level.getBlockEntity(blockPos) instanceof OvenBlockEntity ovenEntity) {
-            String playerMessage;
+            String playerMessage = null;
 
             if(hitTopFace(hitResult)) {
                 //  cooking
@@ -227,7 +227,6 @@ public class ClayOvenBlock  extends BaseEntityBlock {
             }
             else {
                 //  attempt smelting
-                playerMessage = "Smelt in the oven";
                 NetworkHooks.openGui(((ServerPlayer)player), ovenEntity, blockPos);
             }
             chatDebug(player, playerMessage);
@@ -256,6 +255,10 @@ public class ClayOvenBlock  extends BaseEntityBlock {
     }
 
     private void chatDebug(Player player, String message) {
+        if(message == null) {
+            return;
+        }
+
         TextComponent text = new TextComponent("[debug]: " + message);
         player.sendMessage(text, player.getUUID());
     }

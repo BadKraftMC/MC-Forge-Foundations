@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XXX",
+    "SSS",
     "#X#",
     "#X#"
   ],
@@ -11,9 +11,12 @@
     },
     "X": {
       "item": "foundations:rough_stone_block"
+    },
+    "S": {
+      "item": "foundations:rough_stone_slab"
     }
   },
   "result": {
-    "item": "foundations:stone_mason_bench"
+    "item": "foundations:masonry_bench"
   }
 }

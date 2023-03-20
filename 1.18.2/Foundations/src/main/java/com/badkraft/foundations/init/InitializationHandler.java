@@ -1,10 +1,13 @@
 package com.badkraft.foundations.init;
 
+import com.badkraft.foundations.world.inventory.ModMenuContainers;
+import com.badkraft.foundations.world.inventory.screen.MasonryBenchScreen;
 import com.badkraft.foundations.world.item.ItemEditor;
 
 import com.badkraft.foundations.Foundations;
 import com.badkraft.foundations.world.level.block.ModBlocks;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,6 +34,8 @@ public final class InitializationHandler {
 		LOGGER.debug("*** *** MC FOUNDATIONS CLIENT SETUP *** ***");
 
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.CLAY_OVEN.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.STONE_MASON_BENCH.get(), RenderType.solid());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.MASONRY_BENCH.get(), RenderType.solid());
+
+		MenuScreens.register(ModMenuContainers.MASONRY_CRAFTING_MENU.get(), MasonryBenchScreen::new);
 	}
 }

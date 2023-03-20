@@ -13,7 +13,7 @@
               "source": "block_entity"
             }
           ],
-          "name": "foundations:stone_mason_bench"
+          "name": "foundations:masonry_bench"
         }
       ],
       "conditions": [

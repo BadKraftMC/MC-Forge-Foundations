@@ -6,6 +6,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -35,12 +36,14 @@ public class ModBlocks {
             ClayBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));
     public static final RegistryObject<Block> ROUGH_STONE_BLOCK = registerBlockItem("rough_stone_block",
             () -> getBlock(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> ROUGH_STONE_SLAB = registerBlockItem("rough_stone_slab",
+            () -> getSlab(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
 
     public static final RegistryObject<Block> CLAY_OVEN = registerBlockItem("clay_oven",
             ClayOvenBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));
-    public static final RegistryObject<Block> STONE_MASON_BENCH = registerBlockItem("stone_mason_bench",
+    public static final RegistryObject<Block> MASONRY_BENCH = registerBlockItem("masonry_bench",
 //            () -> getBlock(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
-            StoneMasonBenchBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));
+            MasonryBenchBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));
 
     public static void register(IEventBus eventBus) { BLOCKS.register(eventBus); }
 
@@ -59,6 +62,9 @@ public class ModBlocks {
 
     private static <T extends Block> T getBlock(BlockBehaviour.Properties properties) {
         return (T) new Block(properties);
+    }
+    private static <T extends Block> T getSlab(BlockBehaviour.Properties properties) {
+        return (T) new SlabBlock(properties);
     }
     //	gets a generic BlockItem and puts it on the supplied tab
     private static <T extends Item> Supplier<Item> getBlockItem(RegistryObject<Block> block, CreativeModeTab tab) {

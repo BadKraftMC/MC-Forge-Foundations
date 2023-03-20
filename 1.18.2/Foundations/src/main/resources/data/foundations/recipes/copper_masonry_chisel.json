@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #",
+    "# "
+  ],
+  "key": {
+    "#": {
+      "item": "foundations:copper_nugget"
+    }
+  },
+  "result": {
+    "item": "foundations:copper_masonry_chisel"
+  }
+}

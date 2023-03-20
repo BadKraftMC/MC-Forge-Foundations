@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "foundations:block/rough_stone_slab_bottom"
+    },
+    "type=double": {
+      "model": "foundations:block/rough_stone_block"
+    },
+    "type=top": {
+      "model": "foundations:block/rough_stone_slab_top"
+    }
+  }
+}

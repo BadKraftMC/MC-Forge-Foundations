@@ -3,6 +3,7 @@
 	"values": [
 		"foundations:clay_oven",
 		"foundations:rough_stone_block",
+		"foundations:rough_stone_slab",
 		"foundations:stone_mason_bench"
 	]
 }

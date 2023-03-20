@@ -6,11 +6,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 
-public class FoundationsItemTags {
+public class ModItemTags {
 
     public static final TagKey<Item> FLINT_TOOL_MATERIALS = bind("flint_tool_materials");
 
-    private FoundationsItemTags() {
+    private ModItemTags() {
     }
 
     private static TagKey<Item> bind(String name) {
