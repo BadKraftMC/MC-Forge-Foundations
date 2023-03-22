@@ -1,7 +1,8 @@
 package com.badkraft.foundations.world.item;
 
-import com.badkraft.foundations.tags.FoundationsItemTags;
+import com.badkraft.foundations.tags.ModItemTags;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -10,7 +11,10 @@ import java.util.function.Supplier;
 @MethodsReturnNonnullByDefault
 public enum ItemTiers implements Tier {
     PERMANENT(5, 9999, 10.0F, 10.0F, 15, () -> null),
-    FLINT(1, 131, 4.0F, 3.0F, 5, () -> Ingredient.of(FoundationsItemTags.FLINT_TOOL_MATERIALS));
+    FLINT(1, 131, 4.0F, 3.0F, 5, () ->
+            Ingredient.of(ModItemTags.FLINT_TOOL_MATERIALS)),
+    COPPER(1, 150, 4.5F, 3.25F, 5, () ->
+            Ingredient.of(Items.COPPER_INGOT));
 
     private final Supplier<Ingredient> repair;
     private final int enchant;

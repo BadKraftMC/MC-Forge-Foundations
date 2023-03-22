@@ -32,6 +32,7 @@ import java.util.Random;
 
 public class OvenBlockEntity extends AbstractOvenBlockEntity implements MenuProvider {
     private static final int MAX_COOKING_SLOTS = 4;
+    private static final int MAX_INVENTORY_SLOTS = 7;   //  MAX_COOKING_SLOTS = 3 for furnace
 
     private final int[] cookingProgress = new int[MAX_COOKING_SLOTS];
     private final int[] cookingTime = new int[MAX_COOKING_SLOTS];

@@ -21,10 +21,15 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("oven_block_entity", () ->
                     BlockEntityType.Builder.of(OvenBlockEntity::new,
                             ModBlocks.CLAY_OVEN.get()).build(null));
-    public static final RegistryObject<BlockEntityType<CraftingBlockEntity>> CRAFTING_BLOCK_ENTITY =
-            BLOCK_ENTITIES.register("crafting_block_entity", () ->
-                    BlockEntityType.Builder.of(CraftingBlockEntity::new,
-                            ModBlocks.STONE_MASON_BENCH.get()).build(null));
+    public static final RegistryObject<BlockEntityType<MasonryBenchBlockEntity>> MASONRY_BENCH_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("masonry_bench_block_entity", () ->
+                    BlockEntityType.Builder.of(MasonryBenchBlockEntity::new,
+                            ModBlocks.MASONRY_BENCH.get()).build(null));
+
+/*        public static final RegistryObject<BlockEntityType<CarpenterBenchBlocEntity>> CARPENTER_BENCH_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("carpenter_bench_entity", () ->
+                    BlockEntityType.Builder.of(CarpenterBenchBlockEntity::new,
+                            ModBlocks.CARPENTER_BENCH.get()).build(null));*/
 
     public static void register(IEventBus eventBus) { BLOCK_ENTITIES.register(eventBus); }
 

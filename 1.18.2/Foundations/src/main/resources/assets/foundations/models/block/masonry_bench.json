@@ -1,8 +1,8 @@
 {
 	"parent": "minecraft:block/cube",
 	"textures": {
-		"side": "foundations:block/mason_bench_side",
-		"top": "foundations:block/mason_bench_top",
+		"side": "foundations:block/masonry_bench_side",
+		"top": "foundations:block/masonry_bench_top",
 		"bottom": "minecraft:block/stone_bricks",
 		"particle": "minecraft:block/stone"
 	},

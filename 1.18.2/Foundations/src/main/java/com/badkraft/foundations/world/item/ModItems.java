@@ -40,8 +40,14 @@ public class ModItems {
             getItem(CreativeModeTab.TAB_MATERIALS));
     public static final RegistryObject<Item> ROUGH_STONE_ROCK = register("rough_stone_rock",
             getItem(CreativeModeTab.TAB_MATERIALS));
+    public static final RegistryObject<Item> MASONRY_MORTAR = register("masonry_mortar",
+            getItem(CreativeModeTab.TAB_MATERIALS));
 
     //	tools
+    public static final RegistryObject<Item> IRON_MASONRY_CHISEL = register("iron_masonry_chisel", () ->
+            new MasonryChiselItem(Tiers.IRON, 32));
+    public static final RegistryObject<Item> COPPER_MASONRY_CHISEL = register("copper_masonry_chisel", () ->
+            new MasonryChiselItem(ItemTiers.COPPER, 22));
     public static final RegistryObject<Item> FLINT_AXE = register("flint_axe", FlintAxeItem::new);
     public static final RegistryObject<Item> FLINT_SHOVEL = register("flint_shovel", FlintShovelItem::new);
     public static final RegistryObject<Item> FLINT_HOE = register("flint_hoe", FlintHoeItem::new);

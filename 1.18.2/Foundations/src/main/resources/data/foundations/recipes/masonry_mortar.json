@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:sand"
+    },
+    "X": {
+      "item": "minecraft:clay"
+    }
+  },
+  "result": {
+    "item": "foundations:masonry_mortar",
+    "count": 4
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "foundations:rough_stone_block"
+  },
+  "result": "foundations:rough_stone_slab",
+  "count": 2
+}
