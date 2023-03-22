@@ -3,7 +3,7 @@ package com.badkraft.foundations.world.inventory;
 
 import com.badkraft.foundations.world.inventory.slot.BenchInventorySlot;
 import com.badkraft.foundations.world.inventory.slot.BenchResultSlot;
-import com.badkraft.foundations.world.level.block.entity.BenchBlockEntity;
+import com.badkraft.foundations.world.level.block.entity.AbstractBenchBlockEntity;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -38,9 +38,9 @@ public abstract class AbstractBenchMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = BenchBlockEntity.MAX_BENCH_SLOTS;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = AbstractBenchBlockEntity.MAX_BENCH_SLOTS;  // must be the number of slots you have!
 
-    private final BenchBlockEntity benchEntity;
+    private final AbstractBenchBlockEntity benchEntity;
     private final ContainerLevelAccess access;
 
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
@@ -53,7 +53,7 @@ public abstract class AbstractBenchMenu extends AbstractContainerMenu {
         access = ContainerLevelAccess.NULL;
         level = inventory.player.level;
         //  ASSUMPTION: blockEntity is instance of BenchBlockEntity
-        benchEntity = ((BenchBlockEntity) blockEntity);
+        benchEntity = ((AbstractBenchBlockEntity) blockEntity);
 
         checkContainerSize(inventory, TE_INVENTORY_SLOT_COUNT);
 
@@ -103,7 +103,7 @@ public abstract class AbstractBenchMenu extends AbstractContainerMenu {
                 player, getBlock());
     }
 
-    protected <T extends BenchBlockEntity> T getBenchEntity() {
+    protected <T extends AbstractBenchBlockEntity> T getBenchEntity() {
         return  (T)benchEntity;
     }
     protected abstract Block getBlock();
@@ -129,7 +129,7 @@ public abstract class AbstractBenchMenu extends AbstractContainerMenu {
         LOGGER.debug("[ABSTRACT_BENCH_MENU] :: addBenchInventory");
 
         int rowWidth = 2;
-        for (int idx = BenchBlockEntity.INVENTORY_SLOTS_START; idx < BenchBlockEntity.INVENTORY_SLOTS_END; ++idx) {
+        for (int idx = AbstractBenchBlockEntity.INVENTORY_SLOTS_START; idx < AbstractBenchBlockEntity.INVENTORY_SLOTS_END; ++idx) {
             int row = idx / rowWidth;
             int col = idx % rowWidth;
 
@@ -142,10 +142,10 @@ public abstract class AbstractBenchMenu extends AbstractContainerMenu {
         }
     }
     private void addCompulsorySlots(IItemHandler itemHandler) {
-        addSlot(new BenchInventorySlot(itemHandler, BenchBlockEntity.COMPULSORY_SLOT_1, 134, 53));
-        addSlot(new BenchInventorySlot(itemHandler, BenchBlockEntity.COMPULSORY_SLOT_2, 152, 53));
+        addSlot(new BenchInventorySlot(itemHandler, AbstractBenchBlockEntity.COMPULSORY_SLOT_1, 134, 53));
+        addSlot(new BenchInventorySlot(itemHandler, AbstractBenchBlockEntity.COMPULSORY_SLOT_2, 152, 53));
     }
     private void addResultSlot(IItemHandler itemHandler) {
-        addSlot(new BenchResultSlot(itemHandler, BenchBlockEntity.BENCH_RESULT_SLOT, 148, 24));
+        addSlot(new BenchResultSlot(itemHandler, AbstractBenchBlockEntity.BENCH_RESULT_SLOT, 148, 24));
     }
 }

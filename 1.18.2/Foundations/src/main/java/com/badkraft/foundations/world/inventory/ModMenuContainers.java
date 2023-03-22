@@ -1,7 +1,7 @@
 package com.badkraft.foundations.world.inventory;
 
 import com.badkraft.foundations.Foundations;
-import com.badkraft.foundations.world.level.block.entity.BenchBlockEntity;
+import com.badkraft.foundations.world.level.block.entity.AbstractBenchBlockEntity;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,13 +20,13 @@ public class ModMenuContainers {
 
     private static final IContainerFactory<MasonryBenchMenu> getMasonryContainerFactory = (containerId, inventory, extraData) -> {
         BlockPos blockPos = null;
-        BenchBlockEntity benchEntity = null;
+        AbstractBenchBlockEntity benchEntity = null;
 
         if (extraData != null) {
             blockPos = extraData.readBlockPos();
         }
         if (blockPos != null) {
-            benchEntity = (BenchBlockEntity) inventory.player.level.getBlockEntity(blockPos);
+            benchEntity = (AbstractBenchBlockEntity) inventory.player.level.getBlockEntity(blockPos);
         }
 
         LOGGER.debug("[MOD_MENU_CONTAINERS] :: create MasonryBenchMenu(container=" + containerId + ", hasInventory[" + !(inventory == null) + "], hasBenchEntity[" + !(benchEntity == null) + "])");

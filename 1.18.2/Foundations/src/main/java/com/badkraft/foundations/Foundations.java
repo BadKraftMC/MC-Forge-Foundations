@@ -1,5 +1,6 @@
 package com.badkraft.foundations;
 
+import com.badkraft.foundations.recipes.ModRecipes;
 import com.badkraft.foundations.world.inventory.ModMenuContainers;
 import com.badkraft.foundations.world.item.ModItems;
 import com.badkraft.foundations.world.level.block.ModBlocks;
@@ -35,6 +36,8 @@ public class Foundations {
 		ModBlocks.register(bus);
 		ModBlockEntities.register(bus);
 		ModMenuContainers.register(bus);
+
+		ModRecipes.register(bus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

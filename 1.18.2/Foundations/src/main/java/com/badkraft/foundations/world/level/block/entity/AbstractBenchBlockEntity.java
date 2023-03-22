@@ -1,5 +1,6 @@
 package com.badkraft.foundations.world.level.block.entity;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -19,11 +20,14 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
 
 import javax.annotation.Nonnull;
 
 
-public abstract class BenchBlockEntity extends BlockEntity implements MenuProvider {
+public abstract class AbstractBenchBlockEntity extends BlockEntity implements MenuProvider {
+    protected static final Logger LOGGER = LogUtils.getLogger();
+
     //  bench slot counts
     public static final int INVENTORY_SLOTS_START = 0;
     public static final int INVENTORY_SLOTS_END = 6;
@@ -32,7 +36,7 @@ public abstract class BenchBlockEntity extends BlockEntity implements MenuProvid
     public static final int MAX_COMPULSORY_SLOTS = 2;
     public static final int BENCH_RESULT_SLOT = 8;
     public static final int MAX_RESULT_SLOTS = 1;
-    public static final int MAX_STORAGE_SLOTS = 6;
+    public static final int MAX_STORAGE_SLOTS = INVENTORY_SLOTS_END - INVENTORY_SLOTS_START;
     public static final int MAX_BENCH_SLOTS = MAX_STORAGE_SLOTS + MAX_COMPULSORY_SLOTS + MAX_RESULT_SLOTS;  //  not counting selection box
 
     //  how many slots do we have?
@@ -46,7 +50,7 @@ public abstract class BenchBlockEntity extends BlockEntity implements MenuProvid
     protected LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     protected final TextComponent displayName;
 
-    protected BenchBlockEntity(String name, BlockEntityType<?> blockEntity, BlockPos blockPos, BlockState blockState) {
+    protected AbstractBenchBlockEntity(String name, BlockEntityType<?> blockEntity, BlockPos blockPos, BlockState blockState) {
         super(blockEntity, blockPos, blockState);
         displayName = new TextComponent(name);
     }
@@ -94,11 +98,12 @@ public abstract class BenchBlockEntity extends BlockEntity implements MenuProvid
         Containers.dropContents(level, worldPosition, inventory);
     }
 
-    public static void tick(Level level, BlockPos blockPos, BlockState blockState, BenchBlockEntity blockEntity) {
+    public static void tick(Level level, BlockPos blockPos, BlockState blockState, AbstractBenchBlockEntity blockEntity) {
         blockEntity.tick(level, blockPos, blockState);
     }
 
     protected void tick(Level level, BlockPos blockPos, BlockState blockState) {
+        //  add progress bar
         if(hasRecipe()) {
             craftItem();
         }

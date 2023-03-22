@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [],
-  "result": {}
+  "type": "foundations:no-op",
+  "item": {
+    "item": "minecraft:stone_shovel"
+  }
 }

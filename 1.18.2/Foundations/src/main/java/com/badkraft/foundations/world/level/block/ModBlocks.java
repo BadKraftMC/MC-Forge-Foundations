@@ -38,6 +38,8 @@ public class ModBlocks {
             () -> getBlock(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
     public static final RegistryObject<Block> ROUGH_STONE_SLAB = registerBlockItem("rough_stone_slab",
             () -> getSlab(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
+    public static final RegistryObject<Block> ROUGH_STONE_MASONRY_BLOCK = registerBlockItem("rough_stone_masonry_block",
+            () -> getBlock(STONE_PROPERTIES), o -> getBlockItem(o, CreativeModeTab.TAB_BUILDING_BLOCKS));
 
     public static final RegistryObject<Block> CLAY_OVEN = registerBlockItem("clay_oven",
             ClayOvenBlock::new, o -> getBlockItem(o, Foundations.FOUNDATIONS_TAB));

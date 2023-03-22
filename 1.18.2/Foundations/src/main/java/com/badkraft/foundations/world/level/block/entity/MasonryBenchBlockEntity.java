@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-public class MasonryBenchBlockEntity extends BenchBlockEntity {
+public class MasonryBenchBlockEntity extends AbstractBenchBlockEntity {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public MasonryBenchBlockEntity(BlockPos blockPos, BlockState blockState) {

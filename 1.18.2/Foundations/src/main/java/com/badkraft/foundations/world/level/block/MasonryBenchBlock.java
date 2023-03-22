@@ -1,6 +1,6 @@
 package com.badkraft.foundations.world.level.block;
 
-import com.badkraft.foundations.world.level.block.entity.BenchBlockEntity;
+import com.badkraft.foundations.world.level.block.entity.AbstractBenchBlockEntity;
 import com.badkraft.foundations.world.level.block.entity.MasonryBenchBlockEntity;
 import com.badkraft.foundations.world.level.block.entity.ModBlockEntities;
 import com.badkraft.foundations.world.level.block.entity.OvenBlockEntity;
@@ -94,6 +94,6 @@ public class MasonryBenchBlock extends BaseEntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state,
                                                                   @NotNull BlockEntityType<T> entityType) {
         return createTickerHelper(entityType, ModBlockEntities.MASONRY_BENCH_BLOCK_ENTITY.get(),
-                BenchBlockEntity::tick);
+                AbstractBenchBlockEntity::tick);
     }
 }

@@ -10,7 +10,7 @@
 	"item.foundations.iron_nugget_ore": "Iron Nugget Ore",
 	"item.foundations.gold_nugget_ore": "Gold Nugget Ore",
 	"item.foundations.rough_stone_rock": "Rough Stone Rock",
-	"item.foundations.rough_stone_slab": "Rough Stone Slab",
+	"item.foundations.masonry_mortar": "Masonry Mortar",
 
 	"item.foundations.flint_axe": "Flint Axe",
 	"item.foundations.flint_shovel": "Flint Shovel",
@@ -20,6 +20,8 @@
 
 	"block.foundations.clay_block": "Clay",
 	"block.foundations.rough_stone_block": "Rough Stone",
+	"block.foundations.rough_stone_slab": "Rough Stone Slab",
+	"block.foundations.rough_stone_masonry_block": "Rough Stone Masonry",
 
 	"block.foundations.clay_oven": "Clay Oven",
 	"block.foundations.masonry_bench": "Stone Mason's Bench"
